@@ -1,0 +1,27 @@
+{%  load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+{#    <link href="{% static 'css/base.css' %}" rel="stylesheet">#}
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    {% block javascript %}
+    {% endblock %}
+</head>
+<body>
+    <div id="sidebar">
+        <ul>
+            <li id="login"><a href = "{% url 'users:user_login' %}">Login</a></li>
+            <li id="register"><a href = "{% url 'users:register' %}">Register</a></li>
+        </ul>
+    </div>
+    {% block content %}
+    {% endblock %}
+
+
+</body>
+</html>
+

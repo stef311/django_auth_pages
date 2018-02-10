@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Create an account{% endblock %}
+{% block javascript %}
+  <script>
+      $(document).ready(function(){
+          $("#id_username").change(function () {
+              var username = $(this).val();
+
+              $.ajax({
+                  url: '/users/validate_username/',
+                  data: {
+                      'username': username
+                  },
+                  dataType: 'json',
+                  success: function (data) {
+                      if (data.is_taken) {
+                          alert("A user with this username already exists.");
+                      }
+                  }
+              });
+
+          });
+      });
+
+  </script>
+{% endblock %}
+{% block content %}
+    <h1>Create an account</h1>
+    <p>Please, sign up using the following form:</p>
+    <form action="." method="post">
+        {{ user_form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Create account"/></p>
+    </form>
+{% endblock %}
